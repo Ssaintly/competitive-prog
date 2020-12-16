@@ -43,7 +43,7 @@ signed main()
         solve(i);
     return 0;
 }
-
+____________________________________
 **Ques_n code: 1461A #round689(div2)
 A). #include<bits/stdc++.h>
 #include<math.h>
@@ -96,7 +96,7 @@ signed main()
         solve(i);
     return 0;
 }
-
+____________________________________
 #round 690(div3)
 **Ques_n code:1462A
 #include<bits/stdc++.h>
@@ -150,7 +150,7 @@ signed main()
         solve(i);
     return 0;
 }
-
+===================
 **Ques_n code:1426B
 #include<bits/stdc++.h>
 #include<math.h>
