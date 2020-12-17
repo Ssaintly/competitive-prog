@@ -216,3 +216,53 @@ signed main()
     return 0;
 }
 
+__________________________________________________
+#ed round 100(div2)
+**Ques_n code:1463A
+#include<bits/stdc++.h>
+#include<math.h>
+#include<set>
+#include<string>
+using namespace std;
+
+//#define int                long long int
+#define fast_io            ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+#define pb                 push_back
+#define mk                 make_pair
+#define R                  return
+#define ln                 "\n"
+#define ull                unsigned long long
+#define all(x)             x.begin(),x.end()
+#define w(x)               int x;cin>>x;for(int i=1;i<=x;i++)
+#define vi                 vector<pair<int,int>>
+#define ll                 long long
+#define fi                 first
+#define se                 second
+
+
+void solve(int input)
+{
+	int a, b, c;
+	cin >> a >> b >> c;
+	int s = (a + b + c) / 9;
+	if ((a + b + c) % 9 != 0)
+	{cout << "NO" << ln; R;}
+	else
+	{
+		if (min(a, min(b, c)) < s)
+			cout << "NO" << ln;
+		else
+			cout << "YES" << ln;
+		R;
+	}
+}
+
+signed main()
+{
+	fast_io
+	int x = 1;
+	cin >> x;
+	for (int i = 1; i <= x; i++)
+		solve(i);
+	return 0;
+}
