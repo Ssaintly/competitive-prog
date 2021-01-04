@@ -1,0 +1,80 @@
+#question code-FAIRELCT.
+Solution-
+#include<bits/stdc++.h>
+#include<math.h>
+#include<set>
+#include<string>
+using namespace std;
+
+#define int                long long int
+#define fast_io            ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+#define pb                 push_back
+#define mk                 make_pair
+#define R                  return
+#define ln                 "\n"
+#define ull                unsigned long long
+#define all(x)             x.begin(),x.end()
+#define w(x)               int x;cin>>x;for(int i=1;i<=x;i++)
+#define vi                 vector<pair<int,int>>
+#define ll                 long long
+#define fi                 first
+#define se                 second
+
+
+void solve(int input)
+{
+    int n, m;
+    cin >> n >> m;
+    int a[n];
+    int suma = 0, sumb = 0;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+        suma += a[i];
+    }
+    int b[m];
+    for (int i = 0; i < m; i++)
+    {
+        cin >> b[i];
+        sumb += b[i];
+    }
+    if (sumb < sumb)
+    {cout << 0 << ln; R;}
+    else
+    {
+        // cout << suma << " " << sumb << ln;
+        int swaps = 0;
+        sort(a, a + n);
+        sort(b, b + m);
+        int i = m - 1, j = 0;
+        // cout << suma << " " << sumb << ln;
+        while (sumb >= suma && i >= 0 && j <= n)
+        {
+            // cout << "hello" << ln;
+            suma += b[i];
+            suma -= a[j];
+            sumb += a[j];
+            sumb -= b[i];
+            swaps++;
+            j++;
+            i--;
+            // cout << suma << " " << sumb << ln;
+        }
+        // cout << i << " " << j << ln;
+        if (j == n + 1 || i < 0)
+        {cout << -1 << ln ; R;}
+        else
+        {cout << swaps << ln; R;}
+    }
+
+}
+
+signed main()
+{
+    fast_io
+    int x = 1;
+    cin >> x;
+    for (int i = 1; i <= x; i++)
+        solve(i);
+    return 0;
+}
