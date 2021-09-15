@@ -1,0 +1,104 @@
+<snippet>
+	<content><![CDATA[
+// BINARY TREE
+
+#include<bits/stdc++.h>
+
+using namespace std;
+
+class node
+{
+public :
+    int data;
+    node *left;
+    node *right;
+
+    node(int value)
+    {
+        data = value;
+        left = NULL;
+        right = NULL;
+    }
+
+};
+
+node *build_tree()
+{
+    int data;
+    cin >> data;
+    if (data == -1)
+        return NULL;
+    node *root = new node(data);
+    root->left = build_tree();
+    root->right = build_tree();
+    return root;
+}
+
+
+int height(node *root)
+{
+    if (root == NULL)
+        return 0;
+    int r = height(root->left);
+    int l = height(root->right);
+    return max(r, l) + 1;
+}
+
+void print(node *root)
+{
+    if (root == NULL)
+        return ;
+    cout << root->data << " ";
+    print(root->left);
+    print(root->right);
+
+}
+
+
+void printINORDER(node *root)
+{
+    if (root == NULL)
+        return ;
+    printINORDER(root->left);
+    cout << root->data << " ";
+    printINORDER(root->right);
+}
+
+
+void printPOSTORDER(node *root)
+{
+    if (root == NULL)
+        return ;
+
+    printPOSTORDER(root->left);
+    printPOSTORDER(root->right);
+    cout << root->data << " ";
+}
+
+
+void LEVELORDERprint(node *root, int level)
+{
+    if (root == NULL)
+        return;
+    if (level == 1)
+    {
+        cout << root->data << " ";
+        return;
+    }
+    LEVELORDERprint(root->left, level - 1);
+    LEVELORDERprint(root->right, level - 1);
+
+}
+
+int main()
+{
+    node *root = build_tree();
+    print (root);
+
+}
+]]></content>
+	Optional: Set a tabTrigger to define how to trigger the snippet
+	<tabTrigger>binary_tree</tabTrigger>
+	Optional: Set a scope to limit where the snippet will trigger
+	<scope>source.c++</scope>
+</snippet>

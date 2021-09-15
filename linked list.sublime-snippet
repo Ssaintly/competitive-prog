@@ -1,0 +1,235 @@
+<snippet>
+	<content><![CDATA[
+		#include<bits/stdc++.h>
+#include<math.h>
+
+using namespace std;
+
+class node
+{
+public:
+	int data;
+	node *next;
+
+	node(int x)
+	{
+		data = x;
+		next = NULL;
+	}
+};
+
+void print(node *head)
+{
+	while (head != NULL)
+	{
+		cout << head->data << " ";
+		head = head->next;
+	}
+	cout << endl;
+}
+
+// merging by recursion
+
+node *merge(node *a, node *b)
+{
+    if (a == NULL)
+        return b;
+    if (b == NULL)
+        return a;
+
+    node *c;
+    if (a->data < b->data)
+    {
+        c = a;
+        c->next = merge(a->next, b);
+    }
+    else
+    {
+        c = b; c->next = merge(a, b->next);
+    }
+    return c;   
+
+
+}
+// -- ------------------------------------------- -- --
+
+node *kpoint(node*head, int k)
+{
+    node *slow = head, *fast = head;
+    while (k--)
+        fast = fast->next;
+    while (fast != NULL)
+    {
+        slow = slow->next;
+        fast = fast->next;
+    }
+    return slow;
+}
+
+// mid point runner technique------
+
+node* MidPoint(node*&head)
+{
+    node *slow=head, *fast=head;
+    while(fast!=NULL)
+    {
+        fast=fast->next;
+        if(fast!=NULL)
+            fast=fast->next;
+        else
+            return slow;
+        slow=slow->next;
+    }
+}
+bool check_cycle(node *head)
+{
+    if (head == NULL || head->next == NULL)
+        return false;
+    else
+    {
+        node *hare = head, *tortoise = head;
+        while (hare->next != NULL && hare == NULL)
+        {
+            hare = hare->next->next;
+            tortoise = tortoise->next;
+            if (tortoise == hare)
+            {
+                // cout << tortoise->data << " " << hare->data << endl;
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+void reverse(node *&head)
+{
+    node *k = head;
+    node *l = head->next, *p = NULL;
+    while (head->next != NULL)
+    {
+        head->next = p;
+        p = head;
+        head = l;
+        l = head->next;
+    }
+    head->next = p;
+    return ;
+}
+
+void InsertionAtFront(node *&head, int data)
+{
+
+	node *temp = new node(data);
+	temp->next = head;
+	head = temp;
+}
+
+int len(node *head)
+{
+	int count = 0;
+	while (head->next != NULL)
+	{
+		head = head->next;
+		count++;
+	}
+	return count;
+}
+void InsertionAtEnd(node *&head, int val)
+{
+	if (head == NULL)
+	{
+		head = new node(val);
+		return ;
+	}
+	node *tail = head;
+	while (tail->next != NULL)
+		tail = tail->next;
+	tail->next = new node(val);
+	return;
+}
+
+void InsertionAtMiddle(node *&head, int val, int position)
+{
+	if (head == NULL)
+		InsertionAtFront(head, val);
+	else if (position >= len(head))
+		InsertionAtEnd(head, val);
+	else {
+		position-=2;
+		node *temp = head;
+		while (position--)
+			temp = temp->next;
+		node *n=new node(val);
+		n->next=temp->next;
+		temp->next=n;
+	}
+}
+void deleteAtHead(node *&head)
+{
+	node *temp = head->next;
+	delete head;
+	head = temp;
+	return ;
+}
+void deleteAtTail(node *&head)
+{
+	node *temp = head;
+	while (temp->next != NULL)
+		temp = temp->next;
+	int j = len(head) - 1;
+	delete temp;
+	node* n = head;
+	j--;
+	while (j--)
+		n = n->next;
+	n->next = NULL;
+	return;
+}
+void deleteAtMiddle(node *&head, int position)
+{
+	node *temp = head;
+	int j = position - 1;
+	while (j--)
+		temp = temp->next;
+	node *n = temp->next;
+	delete temp;
+	j = position - 2;
+	node *k = head;
+	while (j--)
+		k = k->next;
+	k->next = n;
+	return ;
+}
+bool search(node *head, int value)
+{
+	while (head != NULL)
+	{
+		if (head->data == value)
+			return true;
+		head = head->next;
+	}
+	return false;
+}
+
+int main()
+{
+	int n;
+	cin >> n;
+	node *head = NULL;
+	while (n--)
+	{
+		int x;
+		cin >> x;
+		InsertionAtFront(head, x);
+	}
+
+	print(head);
+}
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>linked_list</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>
